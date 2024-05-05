@@ -1,28 +1,30 @@
+import java.util.ArrayList;
 import company.models.Manager;
 import company.models.Worker;
+import company.abstracts.Employee;
 
 public class Main {
     public static void main(String[] args) {
-        Worker worker1 = new Worker("Roberto", 3000, 1);
-        Worker worker2 = new Worker("Lily", 1500, 2);
-        Worker worker3 = new Worker("Jamie", 1800, 3);
-        Worker worker4 = new Worker("Mike", 2100, 4);
+        Worker worker1 = new Worker("Roberto", 3000, 1, "2023-09-01", "Praktykant");
+        Worker worker2 = new Worker("Lily", 1500, 2, "2022-04-10", "Specjalista");
+        Worker worker3 = new Worker("Jamie", 1800, 3, "2021-11-11", "Kierownik");
+        Worker worker4 = new Worker("Mike", 2100, 4, "2020-05-05", "Dyrektor");
 
-        Manager manager = new Manager("George", 7000, 5);
+        Manager manager = new Manager("George", 7000, 5, "2018-02-20", "Prezes");
 
-        System.out.println("Salary of worker1: " + worker1.getSalary());
-        worker1.work();
+        ArrayList<Employee> employees = new ArrayList<>();
+        employees.add(worker1);
+        employees.add(worker2);
+        employees.add(worker3);
+        employees.add(worker4);
+        employees.add(manager);
 
-        System.out.println("Salary of worker2: " + worker2.getSalary());
-        worker2.work();
-
-        System.out.println("Salary of worker3: " + worker3.getSalary());
-        worker3.work();
-
-        System.out.println("Salary of worker4: " + worker4.getSalary());
-        worker4.work();
-
-        System.out.println("Salary of manager: " + manager.getSalary());
-        manager.work();
+        for (Employee emp : employees) {
+            System.out.println("- " + emp.getName() + " (ID: " + emp.getId() +
+                    ", Position: " + emp.getPosition() +
+                    ", Hire date: " + emp.getHireDate() +
+                    ", Salary: " + emp.getSalary() + ")");
+            emp.work();
+        }
     }
 }
